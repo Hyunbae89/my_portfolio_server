@@ -20,6 +20,10 @@ app.use(bodyParser.urlencoded({extended:false}));
 const connection = mysql.createConnection(config);
 connection.connect();
 
+app.get('/',(req,res)=>{
+    alert("환영합니다.")
+});
+
 //**--------Rating--------**//
 app.get('/api/ratings',(req,res)=>{
     connection.query(
