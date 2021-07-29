@@ -7,9 +7,21 @@ const app = express();
 const port = process.env.PORT || "5000";
 const bcrypt = require('bcrypt');
 const mysql = require('mysql');
-const config = require('./routes/config')
+require('dotenv').config()
+
+const connection = mysql.createConnection({
+    host : process.env.DB_HOST,
+    user : process.env.DB_USER,
+    password : process.env.DB_PSWORD,
+    port : process.env.DB_PORT,
+    database : process.env.DB_DATABASE,
+    insecure : true
+});
+
 app.use(cors());
 // Cross-Origin Resource Sharing을 express에 사용
+
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
@@ -17,8 +29,9 @@ app.use(bodyParser.urlencoded({extended:false}));
 //qs 라이브러리가 추가적인 보안이 가능한 확장된 형태.
 
 
-const connection = mysql.createConnection(config);
+
 connection.connect();
+module.exports = connection;
 
 app.get('/',(req,res)=>{
     alert("환영합니다.")
