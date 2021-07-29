@@ -9,6 +9,14 @@ const bcrypt = require('bcrypt');
 const mysql = require('mysql');
 require('dotenv').config()
 
+app.use(cors());
+// Cross-Origin Resource Sharing을 express에 사용
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:false}));
+//false : node.js내 기본 QueryString 사용, true : npm qs 라이브러리 사용
+//qs 라이브러리가 추가적인 보안이 가능한 확장된 형태.
+
 const connection = mysql.createConnection({
     host : process.env.DB_HOST,
     user : process.env.DB_USER,
@@ -17,17 +25,6 @@ const connection = mysql.createConnection({
     database : process.env.DB_DATABASE,
     insecure : true
 });
-
-app.use(cors());
-// Cross-Origin Resource Sharing을 express에 사용
-
-
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:false}));
-//false : node.js내 기본 QueryString 사용, true : npm qs 라이브러리 사용
-//qs 라이브러리가 추가적인 보안이 가능한 확장된 형태.
-
 
 connection.connect();
 module.exports = connection;
