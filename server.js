@@ -114,7 +114,7 @@ app.post('/api/users/:id/rating',(req,res)=>{
                     if(err){
                         console.log(err) ;
                     }else{
-                        res.json(rows[0]);
+                        res.json(rows);
                     }
                })
             }else{
