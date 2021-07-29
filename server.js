@@ -29,7 +29,6 @@ app.use(bodyParser.urlencoded({extended:false}));
 //qs 라이브러리가 추가적인 보안이 가능한 확장된 형태.
 
 
-
 connection.connect();
 module.exports = connection;
 
