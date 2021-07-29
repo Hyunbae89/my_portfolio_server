@@ -9,6 +9,7 @@ const bcrypt = require('bcrypt');
 const mysql = require('mysql');
 const config = require('./routes/config')
 app.use(cors());
+// Cross-Origin Resource Sharing을 express에 사용
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
@@ -19,6 +20,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 const connection = mysql.createConnection(config);
 connection.connect();
 
+//**--------Rating--------**//
 app.get('/api/ratings',(req,res)=>{
     connection.query(
            "SELECT * FROM RATING",
